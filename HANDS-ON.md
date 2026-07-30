@@ -16,15 +16,28 @@ Copy `.env.example` to `.env` and fill in the values:
 - `ANTHROPIC_API_KEY`: powers the agent layer.
 - `DATABASE_URL` and `REDIS_URL`: the defaults in `.env.example` match the compose file.
 
-## Running
+## Demo mode (no account, no API key)
+
+The fastest way to see Cadence work. It runs the entire loop (sync into Postgres, follow-up drafting, CRM write-back, and the exactly-once guard) against a bundled demo pipeline with a deterministic drafter. Nothing leaves your machine.
 
 ```
 docker compose -f docker/docker-compose.yml up -d
 npm install
-npm run dev
+npm run demo
 ```
 
-The API serves `/healthz` on port 8040. `npm run typecheck` and `npm test` cover static checks and the test suite.
+## Running against HubSpot
+
+```
+docker compose -f docker/docker-compose.yml up -d
+npm install
+npm run dev        # API with the webhook receiver on port 8040
+npm run worker     # queue worker for webhook events
+npm run sync       # pull contacts and deals into Postgres
+npm run followup -- <contactId>   # draft and post a follow-up note
+```
+
+These need the HubSpot credentials from the Environment section. Without `ANTHROPIC_API_KEY`, `followup` falls back to the deterministic drafter. `npm run typecheck` and `npm test` cover static checks and the test suite.
 
 ## Design rules
 

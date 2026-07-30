@@ -16,7 +16,8 @@
     "db:push": "drizzle-kit push",
     "worker": "tsx src/cli/worker.ts",
     "sync": "tsx src/cli/sync.ts",
-    "followup": "tsx src/cli/followup.ts"
+    "followup": "tsx src/cli/followup.ts",
+    "demo": "tsx src/cli/demo.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

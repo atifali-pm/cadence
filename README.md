@@ -17,6 +17,7 @@ Cadence closes that gap. It reasons over the whole pipeline continuously, surfac
 - Runs a Claude agent layer that analyzes deal risk, spots stalled follow-ups, and proposes the next action for each record that needs one.
 - Writes agent output back into HubSpot as notes and tasks, with idempotency so the same insight never lands twice.
 - Stays CRM-agnostic behind a provider interface. HubSpot is the first implementation; the interface is built so a second CRM slots in without rewriting the agent layer.
+- Ships with a credential-free demo mode: one command runs the full sync, drafting, and write-back loop against a bundled demo pipeline, no CRM account or API key required.
 
 ## Who it is for
 

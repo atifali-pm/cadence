@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { sql } from "drizzle-orm";
 import { FollowupDrafter } from "../agents/followup-drafter.js";
+import { HeuristicDrafter } from "../agents/heuristic-drafter.js";
 import { loadEnv } from "../config.js";
 import { requireHubSpotProvider } from "../connectors/hubspot/index.js";
 import { closeDb, getDb, schema } from "../db/client.js";
@@ -37,7 +38,12 @@ async function main(): Promise<void> {
     .from(schema.deals)
     .where(sql`${schema.deals.contactIds} @> ${JSON.stringify([contactId])}::jsonb`);
 
-  const drafter = new FollowupDrafter();
+  const drafter = process.env.ANTHROPIC_API_KEY
+    ? new FollowupDrafter()
+    : new HeuristicDrafter();
+  if (drafter instanceof HeuristicDrafter) {
+    console.log("ANTHROPIC_API_KEY is not set; using the offline heuristic drafter");
+  }
   const draft = await drafter.draft({
     contact,
     deals: dealRows.map((deal) => ({
