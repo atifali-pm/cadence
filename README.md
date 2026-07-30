@@ -22,17 +22,6 @@ Cadence closes that gap. It reasons over the whole pipeline continuously, surfac
 
 Sales teams and revenue operators who already run their pipeline in HubSpot and want an agent watching it, not another dashboard to check. It is also a worked reference for the broader pattern of putting an AI agent on top of a CRM: pipeline copilots, HubSpot automation, sales-cadence tooling.
 
-## Phases
-
-Cadence ships in thin vertical slices. Each phase is real on every layer rather than one layer built out ahead of the others.
-
-- **Phase 0 (done at scaffold):** repo, docs, local environment, provider interface skeleton, hello-world API.
-- **Phase 1:** the first end-to-end slice. Contacts and deals sync into the store, one webhook subscription handled start to finish, one agent-drafted follow-up note written back to a real HubSpot contact.
-- **Phase 2:** full incremental sync across companies and deal stages, broader webhook coverage, hardened background job handling and rate-limit strategy.
-- **Phase 3:** the agent layer proper. A pipeline analyst for deal risk and stalled deals, a follow-up drafter, and an orchestrator coordinating them. This is the demo-worthy milestone.
-- **Phase 4:** an MCP server exposing the CRM tools to Claude and other agents, plus a second-CRM provider stub proving the abstraction holds.
-- **Phase 5:** dashboard polish, structured logging, docs pass.
-
 ## Screenshots
 
 Screenshots land here as the build progresses. They live in [`/screenshots/`](screenshots/) at the repo root and are embedded below.
