@@ -1,4 +1,7 @@
 import { buildServer } from "./api/server.js";
+import { loadEnv } from "./config.js";
+
+loadEnv();
 
 const PORT = Number(process.env.PORT ?? 8040);
 const HOST = process.env.HOST ?? "0.0.0.0";

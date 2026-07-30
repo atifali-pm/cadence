@@ -84,6 +84,9 @@ export interface CrmProvider {
   listCompanies(options?: CrmListOptions): Promise<CrmPage<CrmCompany>>;
   listDeals(options?: CrmListOptions): Promise<CrmPage<CrmDeal>>;
 
+  getContact(id: CrmObjectId): Promise<CrmContact>;
+  getDeal(id: CrmObjectId): Promise<CrmDeal>;
+
   createNote(input: CrmNoteInput): Promise<CrmWriteResult>;
   createTask(input: CrmTaskInput): Promise<CrmWriteResult>;
 }

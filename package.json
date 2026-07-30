@@ -12,13 +12,22 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "db:push": "drizzle-kit push",
+    "worker": "tsx src/cli/worker.ts",
+    "sync": "tsx src/cli/sync.ts",
+    "followup": "tsx src/cli/followup.ts"
   },
   "dependencies": {
-    "fastify": "^5.0.0"
+    "@anthropic-ai/sdk": "^0.115.0",
+    "bullmq": "^5.81.3",
+    "drizzle-orm": "^0.45.2",
+    "fastify": "^5.0.0",
+    "postgres": "^3.4.9"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "drizzle-kit": "^0.31.10",
     "tsx": "^4.0.0",
     "typescript": "^5.6.0",
     "vitest": "^2.0.0"
