@@ -6,10 +6,6 @@
  *
  * Nothing CRM-specific should leak past this boundary. The sync, agent, and API
  * layers depend on these shapes, never on a vendor SDK directly.
- *
- * Phase 0: interface skeleton only. No implementation, no API calls. The method
- * set below is a starting contract and will be refined when the HubSpot provider
- * is built in Phase 1.
  */
 
 export type CrmObjectId = string;
