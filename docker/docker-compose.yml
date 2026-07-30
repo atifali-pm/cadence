@@ -1,0 +1,39 @@
+# Local dev services for Cadence.
+# Host ports were scanned against sibling projects at scaffold time to avoid collisions.
+# API 8040, Postgres 5461, Redis 6386.
+services:
+  postgres:
+    image: postgres:16
+    container_name: cadence-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cadence
+      POSTGRES_PASSWORD: cadence
+      POSTGRES_DB: cadence
+    ports:
+      - "5461:5432"
+    volumes:
+      - cadence-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cadence"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7
+    container_name: cadence-redis
+    restart: unless-stopped
+    ports:
+      - "6386:6379"
+    volumes:
+      - cadence-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  cadence-postgres-data:
+  cadence-redis-data:
